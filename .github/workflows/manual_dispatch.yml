@@ -5,7 +5,7 @@ on:
 
 jobs:
   invoke_tests:
-      uses: cesiztel/reusable-workflow/.github/workflows/simple-app@main
+      uses: cesiztel/reusable-workflow/.github/workflows/simple-app.yml@main
       with:
         # Indicate we triggered the tests manually
         TRIGGER: manual_${{ github.run_id }}.${{ github.run_number }}
