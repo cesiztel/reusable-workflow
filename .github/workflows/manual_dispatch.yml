@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  invoke_tests:
+  invoke_app:
       uses: cesiztel/reusable-workflow/.github/workflows/simple-app.yml@main
       with:
-        # Indicate we triggered the tests manually
+        # Indicate we triggered the app manually
         TRIGGER: manual_${{ github.run_id }}.${{ github.run_number }}
       secrets: inherit
