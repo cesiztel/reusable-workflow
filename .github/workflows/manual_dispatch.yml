@@ -1,0 +1,12 @@
+# Trigger the workflow manually
+name: Manual simple app dispatch
+on: 
+  workflow_dispatch:
+
+jobs:
+  invoke_tests:
+      uses: cesiztel/reusable-workflow/.github/workflows/simple-app@main
+      with:
+        # Indicate we triggered the tests manually
+        TRIGGER: manual_${{ github.run_id }}.${{ github.run_number }}
+      secrets: inherit
