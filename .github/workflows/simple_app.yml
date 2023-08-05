@@ -1,0 +1,43 @@
+# This workflow can be triggerd from other workflows
+name: Simple app workflow
+
+on:
+
+  workflow_call:
+
+jobs:
+  running_app:
+    name: Running simple app
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the code (caller repo)
+      - name: Checkout source
+        uses: actions/checkout@v3
+
+      - name: Checkout the simple app repo
+        uses: actions/checkout@v3
+        with:
+          repository: cesiztel/reusable-workflow
+          # path: .github/actions
+          ref: main
+      - name: Print directory before running app
+        run: |
+          pwd
+          ls -la
+        shell: bash
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+          cache: "pip"
+      - name: Install Python Packages
+        run: |
+          pip install --upgrade pip
+          pip install wheel
+          pip install -r requirements.txt
+        shell: bash
+      # Run the tests
+      - name: Run the app  
+        run: |
+          python index.py
+        shell: bash
