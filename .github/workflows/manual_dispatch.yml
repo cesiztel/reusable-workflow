@@ -2,6 +2,8 @@
 name: Manual simple app dispatch
 on: 
   workflow_dispatch:
+  repository_dispatch:
+    types: [reusable-workflow-caller]
 
 jobs:
   invoke_app:
